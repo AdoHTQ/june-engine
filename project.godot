@@ -1,0 +1,32 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="june-engine"
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+RaymarchRenderer="*res://addons/june_renderer/nodes/autoload/RaymarchRenderer.cs"
+FpsCounter="*res://scripts/FPSCounter.cs"
+
+[display]
+
+window/vsync/vsync_mode=0
+
+[dotnet]
+
+project/assembly_name="june-engine"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/june_renderer/plugin.cfg", "res://addons/plugin_refresher/plugin.cfg")
