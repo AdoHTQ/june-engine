@@ -5,7 +5,7 @@ using Godot.Collections;
 
 [Tool]
 [GlobalClass]
-[Icon("res://addons/may_renderer/icons/BoxMesh.svg")]
+[Icon("res://addons/june_renderer/icons/BoxMesh.svg")]
 public partial class RaymarchCube : RaymarchPrimitive
 {
     [Export] public float Size 

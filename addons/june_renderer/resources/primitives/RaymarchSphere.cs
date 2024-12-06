@@ -3,7 +3,7 @@ using Godot;
 
 [Tool]
 [GlobalClass]
-[Icon("res://addons/may_renderer/icons/SphereMesh.svg")]
+[Icon("res://addons/june_renderer/icons/SphereMesh.svg")]
 public partial class RaymarchSphere : RaymarchPrimitive
 {
     [Export] public float Radius

@@ -4,7 +4,7 @@ using Godot;
 
 [Tool]
 [GlobalClass]
-[Icon("res://addons/may_renderer/icons/MeshInstance3D.svg")]
+[Icon("res://addons/june_renderer/icons/MeshInstance3D.svg")]
 public partial class RaymarchPrimitive : Resource
 {
     public Mesh PreviewMesh {get; protected set;}

@@ -4,7 +4,7 @@ using Godot;
 
 [Tool]
 [GlobalClass]
-[Icon("res://addons/may_renderer/icons/RayCast3D.svg")]
+[Icon("res://addons/june_renderer/icons/RayCast3D.svg")]
 public partial class RaymarchPrimitiveInstance3D : Node3D
 {
     private RaymarchPrimitive _primitive;
@@ -17,8 +17,10 @@ public partial class RaymarchPrimitiveInstance3D : Node3D
             else if (previewMeshInstance != null) previewMeshInstance.Mesh = value.PreviewMesh;
         }
     }
+    [Export] private Aabb boundingBox;
 
     private MeshInstance3D previewMeshInstance;
+    private VisibleOnScreenNotifier3D screenNotifier;
 
     public RaymarchPrimitiveInstance3D()
     {
@@ -31,13 +33,29 @@ public partial class RaymarchPrimitiveInstance3D : Node3D
     {
         if (Engine.IsEditorHint() || _primitive == null) return;
 
-        RaymarchRenderer.Instance.RegisterPrimitive(this);
+        screenNotifier = new VisibleOnScreenNotifier3D();
+        AddChild(screenNotifier);
+
+        screenNotifier.Aabb = boundingBox;
+
+        screenNotifier.ScreenEntered += Register;
+        screenNotifier.ScreenExited += Deregister;
     }
 
     public override void _ExitTree()
     {
         if (Engine.IsEditorHint() || _primitive == null) return;
 
+        RaymarchRenderer.Instance.DeregisterPrimitive(this);
+    }
+
+    private void Register()
+    {
+        RaymarchRenderer.Instance.RegisterPrimitive(this);
+    }
+
+    private void Deregister()
+    {
         RaymarchRenderer.Instance.DeregisterPrimitive(this);
     }
 

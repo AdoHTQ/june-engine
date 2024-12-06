@@ -71,7 +71,7 @@ public partial class RaymarchRenderer : Node
         };
 
         depthTexture = device.TextureCreate(format, new(), new());
-        device.TextureClear(depthTexture, Colors.Magenta, 0, 1, 0, 1);
+        device.TextureClear(depthTexture, Colors.Transparent, 0, 1, 0, 1);
 
         depthUniform = new() {UniformType = RenderingDevice.UniformType.Image, Binding = 0};
         depthUniform.AddId(depthTexture);
@@ -101,8 +101,10 @@ public partial class RaymarchRenderer : Node
 
     public override void _Process(double delta)
     {
+        GD.Print(primitives.Count);
         Rid pipeline = device.ComputePipelineCreate(shader);
 
+        device.TextureClear(depthTexture, Colors.Transparent, 0, 1, 0, 1);
 
         //Create input arrays
         List<int> typeInput = new();
@@ -148,7 +150,7 @@ public partial class RaymarchRenderer : Node
         
         
         device.FreeRid(pipeline);
-        //device.FreeRid(uniformSet);
+        device.FreeRid(uniformSet);
         device.FreeRid(objectTypeBuffer);
         device.FreeRid(objectDataBuffer);
 

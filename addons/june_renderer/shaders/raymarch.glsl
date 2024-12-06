@@ -24,7 +24,7 @@ layout(rgba8, set = 0, binding = 0) uniform image2D depth_image;
 layout(set = 0, binding = 1, std430) restrict buffer ObjectTypes { int data[]; } object_types;
 
 //Input object data (positions, radius, etc.)
-layout(set = 0, binding = 2, std430) restrict buffer ObjectPositions { float data[]; } object_positions;
+layout(set = 0, binding = 2, std430) restrict buffer ObjectPositions { float data[]; } object_data;
 
 //Globally accessed by conemarch function and main function
 struct HitResult
@@ -85,11 +85,11 @@ float SDF(vec3 point)
 		//if (object_types.data[i] == -1) continue;
 
 		int offset = dataBufferObjectSize * i;
-		vec3 objectPos = vec3(object_positions.data[offset + 0], object_positions.data[offset + 1], object_positions.data[offset + 2]);
+		vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
 		float dist;
 
-		if (object_types.data[i] == 0) dist = sdSphere(point, objectPos, object_positions.data[offset + 3]);
-		//else if (object_types.data[i] == 1) dist = sdBox(point, objectPos, vec3(object_positions.data[offset + 3]));
+		if (object_types.data[i] == 0) dist = sdSphere(point, objectPos, object_data.data[offset + 3]);
+		//else if (object_types.data[i] == 1) dist = sdBox(point, objectPos, vec3(object_data.data[offset + 3]));
 
 		closest = min(closest, dist);
 	}
@@ -160,27 +160,23 @@ void main() {
 	vec3 dir = normalize(vec3(uv.x, -uv.y, -1.0));
 
 	//Ray-AABB check to shift forward cheaply
-	// if (size.x == 512)
-	// {
-	// 	float minDist = 999999999999999.;
-	// 	bool hit = false;
-	// 	for (int i = 0; i < object_types.data.length(); i++)
-	// 	{
-	// 		int offset = dataBufferObjectSize * i;
-	// 		vec3 objectPos = vec3(object_positions.data[offset + 0], object_positions.data[offset + 1], object_positions.data[offset + 2]);
-	// 		vec2 intersect = intersectAABB(pos, dir, objectPos, vec3(1.0));
-	// 		if (intersect.x <= intersect.y) 
-	// 		{
-	// 			minDist = min(minDist, intersect.x);
-	// 			hit = true;
-	// 		}
-	// 	}
-	// 	startingDepth = minDist * float(hit);
-	// }
-	vec2 intersection = intersectAABB(pos, dir, vec3(0.), vec3(1.0));
-	if (intersection.x > intersection.y) return;
+	float minDist = 999999999999999.;
+	bool hit = false;
+	for (int i = 0; i < object_types.data.length(); i++)
+	{
+		if (object_types.data[i] == -1) break;
 
-	raymarch(pos, dir, 0.0, size.x);
+		int offset = dataBufferObjectSize * i;
+		vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
+		vec2 intersect = intersectAABB(pos, dir, objectPos, vec3(1.0));
+		if (intersect.x <= intersect.y) 
+		{
+			minDist = min(minDist, intersect.x);
+			hit = true;
+		}
+	}
+
+	raymarch(pos, dir, minDist, size.x);
 
     //Use first one in the future for deferred-ish (rgb are normal, alpha is depth)
 	//if (params.finalPass) imageStore(output_image, pixel, float(hitResult.hit) * vec4(calcNormal(hitResult.pos), distance(hitResult.pos, pos)));
