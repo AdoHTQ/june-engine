@@ -1,7 +1,7 @@
 #[compute]
 #version 450
 
-const int maxSteps = 100;
+const int maxSteps = 200;
 const float minDistance = 0.0001;
 const float maxDistance = 1000.;
 
@@ -14,8 +14,12 @@ const int dataBufferObjectSize = 4;
 
 
 
+int hitObjects[32];
+int hitCount = 0;
+
+
 // Invocations in the (x, y, z) dimension
-layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 
 //Image uniforms
 layout(rgba8, set = 0, binding = 0) uniform image2D depth_image;
@@ -79,12 +83,9 @@ vec2 intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxPosition, vec3 boxHalfSi
 float SDF(vec3 point)
 {
 	float closest = 9999999999.;
-	for (int i = 0; i < object_types.data.length(); i++)
+	for (int i = 0; i < hitCount; i++)
 	{
-		//Continue if ray doesn't intersect AABB
-		//if (object_types.data[i] == -1) continue;
-
-		int offset = dataBufferObjectSize * i;
+		int offset = dataBufferObjectSize * hitObjects[i];
 		vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
 		float dist;
 
@@ -133,8 +134,6 @@ void raymarch(vec3 pos, vec3 dir, float startingDepth, int subdivisions)
 }
 
 
-
-
 void main() {
 	//gl_GlobalInvocationID is in pixel coorinates so we need to divide by the image resolution
     ivec2 pixel = ivec2(gl_GlobalInvocationID.xy);
@@ -161,10 +160,11 @@ void main() {
 
 	//Ray-AABB check to shift forward cheaply
 	float minDist = 999999999999999.;
-	bool hit = false;
 	for (int i = 0; i < object_types.data.length(); i++)
 	{
-		if (object_types.data[i] == -1) break;
+		int type = object_types.data[i];
+
+		if (type == -1) break;
 
 		int offset = dataBufferObjectSize * i;
 		vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
@@ -172,7 +172,8 @@ void main() {
 		if (intersect.x <= intersect.y) 
 		{
 			minDist = min(minDist, intersect.x);
-			hit = true;
+			hitObjects[hitCount] = i;
+			hitCount++;
 		}
 	}
 
