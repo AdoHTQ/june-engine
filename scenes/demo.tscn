@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c71y3h77a0n41"]
+[gd_scene load_steps=5 format=3 uid="uid://c71y3h77a0n41"]
 
 [ext_resource type="Script" path="res://addons/june_renderer/nodes/RaymarchPrimitiveInstance3D.cs" id="2_s86y2"]
 [ext_resource type="Script" path="res://addons/june_renderer/resources/primitives/RaymarchSphere.cs" id="3_6bjc2"]
@@ -6,6 +6,10 @@
 [sub_resource type="Resource" id="Resource_ashcd"]
 script = ExtResource("3_6bjc2")
 Radius = 0.5
+
+[sub_resource type="Resource" id="Resource_0ifs3"]
+script = ExtResource("3_6bjc2")
+Radius = 2.19
 
 [node name="Node3D" type="Node3D"]
 
@@ -6075,6 +6079,12 @@ script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_ashcd")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
+[node name="RaymarchPrimitiveInstance3D1070" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 6.086, 6.30287, -41.1722)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_0ifs3")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
 [node name="RaymarchPrimitiveInstance3D1012" type="Node3D" parent="."]
 transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 3.9061, 29.5127, -82.278)
 script = ExtResource("2_s86y2")
@@ -6112,43 +6122,313 @@ Primitive = SubResource("Resource_ashcd")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchPrimitiveInstance3D1018" type="Node3D" parent="."]
-transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 1.6686, 29.8694, -80.3839)
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 1.6686, 29.8694, -100.863)
 script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_ashcd")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchPrimitiveInstance3D1019" type="Node3D" parent="."]
-transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 8.05966, 31.8553, -81.5658)
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 8.05966, 31.8553, -102.045)
 script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_ashcd")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchPrimitiveInstance3D1020" type="Node3D" parent="."]
-transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.87976, 27.9123, -81.9396)
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.87976, 27.9123, -102.419)
 script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_ashcd")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchPrimitiveInstance3D1021" type="Node3D" parent="."]
-transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.17344, 31.6761, -84.7606)
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.17344, 31.6761, -105.24)
 script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_ashcd")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchPrimitiveInstance3D1022" type="Node3D" parent="."]
-transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 1.6686, 31.9252, -80.3839)
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 1.6686, 31.9252, -100.863)
 script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_ashcd")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchPrimitiveInstance3D1023" type="Node3D" parent="."]
-transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 8.05966, 33.9111, -81.5658)
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 8.05966, 33.9111, -102.045)
 script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_ashcd")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchPrimitiveInstance3D1024" type="Node3D" parent="."]
-transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.87976, 29.9681, -81.9396)
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.87976, 29.9681, -102.419)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1025" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 0.798325, 13.659, -24.1638)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1026" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 0.0920076, 17.4229, -26.9847)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1027" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, -3.41283, 17.672, -22.6081)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1028" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 2.97823, 19.6579, -23.79)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1029" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 0.798325, 15.7149, -24.1638)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1030" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 2.06567, 13.7666, -26.6463)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1031" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, -1.43918, 14.0157, -22.2697)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1032" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 4.95189, 16.0016, -23.4516)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1033" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 2.77198, 12.0586, -23.8253)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1034" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 2.06567, 15.8225, -6.16693)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1035" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, -1.43918, 16.0715, -1.79031)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1036" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 4.95189, 18.0575, -2.97219)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1037" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 2.77198, 14.1145, -3.34598)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1038" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 0.274611, 20.4608, -15.4505)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1039" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, -3.23023, 20.7099, -11.0739)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1040" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 3.16083, 22.6958, -12.2558)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1041" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 0.980926, 18.7528, -12.6296)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1042" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 0.274611, 22.5166, -15.4505)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1043" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, -3.23023, 22.7657, -11.0739)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1044" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 3.16083, 24.7516, -12.2558)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1045" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 0.980926, 20.8086, -12.6296)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1046" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 2.24827, 18.8604, -15.1121)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1047" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, -1.25657, 19.1094, -10.7355)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1048" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.13449, 21.0954, -11.9174)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1049" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 2.95459, 17.1524, -12.2912)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1050" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 2.24827, 20.9162, -15.1121)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1051" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, -1.25657, 21.1653, -10.7355)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1052" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.13449, 23.1512, -11.9174)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1053" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 2.95459, 19.2082, -12.2912)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1054" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 3.19978, 19.5541, -24.6294)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1055" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, -0.305061, 19.8032, -20.2528)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1056" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 6.086, 21.7891, -21.4347)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1057" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 3.9061, 17.8461, -21.8085)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1058" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 3.19978, 21.61, -24.6294)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1059" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, -0.305061, 21.8591, -20.2528)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1060" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 6.086, 23.845, -21.4347)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1061" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 3.9061, 19.902, -21.8085)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1062" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.17344, 17.9537, -24.291)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1063" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 1.6686, 18.2028, -19.9144)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1064" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 8.05966, 20.1887, -21.0963)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1065" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.87976, 16.2457, -21.4701)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1066" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.17344, 20.0096, -24.291)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1067" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 1.6686, 20.2587, -19.9144)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1068" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 8.05966, 22.2446, -21.0963)
+script = ExtResource("2_s86y2")
+Primitive = SubResource("Resource_ashcd")
+boundingBox = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="RaymarchPrimitiveInstance3D1069" type="Node3D" parent="."]
+transform = Transform3D(0.985615, 0, -0.169005, 0, 1, 0, 0.169005, 0, 0.985615, 5.87976, 18.3016, -21.4701)
 script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_ashcd")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
