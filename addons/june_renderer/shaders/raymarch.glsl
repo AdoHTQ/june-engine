@@ -187,8 +187,8 @@ void main() {
 	raymarch(params.camera_position, dir, minDist, size.x);
 
     //Use first one in the future for deferred-ish (rgb are normal, alpha is depth)
-	//if (params.finalPass) imageStore(output_image, pixel, float(hitResult.hit) * vec4(calcNormal(hitResult.pos), distance(hitResult.pos, pos)));
-	imageStore(depth_image, pixel, vec4(vec3(0.0), float(hitResult.hit) * hitResult.dist));
+	imageStore(depth_image, pixel, float(hitResult.hit) * vec4(calcNormal(hitResult.pos), hitResult.dist));
+	//imageStore(depth_image, pixel, vec4(vec3(0.0), float(hitResult.hit) * hitResult.dist));
 	
 	//imageStore(depth_image, pixel, vec4(vec3(float(hitResult.steps) / 100.), 1.0));
 }
