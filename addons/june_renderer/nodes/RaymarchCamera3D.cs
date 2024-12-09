@@ -7,4 +7,13 @@ using Godot;
 [Icon("res://addons/june_renderer/icons/Camera3D.svg")]
 public partial class RaymarchCamera3D : Camera3D
 {
+    public override void _Ready()
+    {
+        RaymarchRenderer.Instance.SetFov(Fov);
+    }
+    
+    public override void _Process(double delta)
+    {
+        RaymarchRenderer.Instance.cameraPos = GlobalPosition;
+    }
 }

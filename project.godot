@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 RaymarchRenderer="*res://addons/june_renderer/nodes/autoload/RaymarchRenderer.cs"
 FpsCounter="*res://scripts/FPSCounter.cs"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="june-engine"

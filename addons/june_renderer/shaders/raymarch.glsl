@@ -93,7 +93,7 @@ float getPrimitiveDist(vec3 point, int objectNum)
 	int offset = object_types.data[objectNum+1];
 
 	vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
-	if (type == 0) return sdSphere(point, objectPos, 1.);
+	if (type == 0) return sdSphere(point, objectPos, object_data.data[offset + 3]);
 	// else if (object_types.data[objectNum] == 1) return sdBox(point, objectPos, vec3(object_data.data[offset + 3]));
 }
 
@@ -160,7 +160,7 @@ void main() {
 	//Correct uv for aspect ratio
 	uv.x *= (float(size.x) / size.y);
 
-    //FOV is already the tangent of fov/2 so we don't need to calculate on each thread
+    //tan_fov is already tan(fov/2) so we don't need to calculate on each thread
 	uv *= params.camera_tan_fov;
 
 	vec3 dir = normalize(vec3(uv.x, -uv.y, -1.0));

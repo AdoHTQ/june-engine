@@ -37,14 +37,23 @@ public partial class RaymarchRenderer : Node
     }
 
 
+    public void SetFov(float fov)
+    {
+        tanFov = Mathf.Tan(Mathf.DegToRad(fov)/2f);
+        GD.Print(tanFov);
+    }
+
 
     private RenderingDevice device;
-    private const int dataBufferObjectSize = 4;
     
     private Rid depthTexture = new();
     private Rid shader = new();
     private TextureRect rect;
     private RDUniform depthUniform;    
+
+    public float tanFov;
+    public Vector3 cameraPos;
+    public Vector3 cameraDir;
 
     private void SetupComputeShader()
     {
@@ -122,10 +131,10 @@ public partial class RaymarchRenderer : Node
         //Build push constant
         float[] pushConstant = 
         {
-            0f,
-            0f,
-            5f,
-            0.767326987979f,
+            cameraPos.X,
+            cameraPos.Y,
+            cameraPos.Z,
+            tanFov,
             0f,
             0f,
             0f,

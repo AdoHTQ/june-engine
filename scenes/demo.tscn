@@ -21,11 +21,13 @@ Primitive = SubResource("Resource_0blch")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchPrimitiveInstance3D3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.455, -0.645, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.815, -0.645, 0)
 script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_lwc6o")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchCamera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.335)
+visible = false
+fov = 112.9
 script = ExtResource("3_6m82c")
