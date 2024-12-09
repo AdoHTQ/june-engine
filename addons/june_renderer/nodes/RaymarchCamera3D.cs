@@ -15,6 +15,6 @@ public partial class RaymarchCamera3D : Camera3D
     public override void _Process(double delta)
     {
         RaymarchRenderer.Instance.cameraPos = GlobalPosition;
-        RaymarchRenderer.Instance.cameraDir = new(Transform.Basis);
+        RaymarchRenderer.Instance.cameraDir = new(GlobalBasis);
     }
 }
