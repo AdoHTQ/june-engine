@@ -5,7 +5,7 @@ const int maxSteps = 200;
 const float minDistance = 0.0001;
 const float maxDistance = 1000.;
 
-const float tanFov = 0.767326987979;
+//const float tanFov = 0.767326987979;
 
 const vec3 light = normalize(vec3(1.0, 1.0, -1.0));
 const float ambient = 0.2;
@@ -29,6 +29,13 @@ layout(set = 0, binding = 1, std430) restrict buffer ObjectTypes { int data[]; }
 
 //Input object data (positions, radius, etc.)
 layout(set = 0, binding = 2, std430) restrict buffer ObjectPositions { float data[]; } object_data;
+
+layout(push_constant, std430) uniform Params {
+	vec3 camera_position;
+	float camera_tan_fov;
+	vec3 camera_rotation;
+	float padding;
+} params;
 
 //Globally accessed by conemarch function and main function
 struct HitResult
@@ -80,19 +87,22 @@ vec2 intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxPosition, vec3 boxHalfSi
     return vec2(tNear, tFar);
 }
 
+float getPrimitiveDist(vec3 point, int objectNum)
+{
+	int type = object_types.data[objectNum];
+	int offset = object_types.data[objectNum+1];
+
+	vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
+	if (type == 0) return sdSphere(point, objectPos, 1.);
+	// else if (object_types.data[objectNum] == 1) return sdBox(point, objectPos, vec3(object_data.data[offset + 3]));
+}
+
 float SDF(vec3 point)
 {
-	float closest = 9999999999.;
-	for (int i = 0; i < hitCount; i++)
+	float closest = getPrimitiveDist(point, hitObjects[0]);
+	for (int i = 1; i < hitCount; i++)
 	{
-		int offset = dataBufferObjectSize * hitObjects[i];
-		vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
-		float dist;
-
-		if (object_types.data[i] == 0) dist = sdSphere(point, objectPos, object_data.data[offset + 3]);
-		//else if (object_types.data[i] == 1) dist = sdBox(point, objectPos, vec3(object_data.data[offset + 3]));
-
-		closest = min(closest, dist);
+		closest = min(closest, getPrimitiveDist(point, hitObjects[i]));
 	}
 	return closest;
 }
@@ -112,15 +122,13 @@ void raymarch(vec3 pos, vec3 dir, float startingDepth, int subdivisions)
 {
 	hitResult.hit = false;
 	hitResult.steps = 0;
-	hitResult.pos = pos;
+	hitResult.pos = pos + dir * startingDepth;
     hitResult.dist = startingDepth;
 
 	for (hitResult.steps = 0; hitResult.steps < maxSteps; hitResult.steps++)
 	{
 		float marchDistance = SDF(hitResult.pos);
 
-		//Mysterious value is the square root of 2, aka the distance from one corner of a unit square to the opposite
-		//Multiplied to make sure circular cone takes up the entire square
 		if (marchDistance < minDistance)
 		{
 			hitResult.hit = true;
@@ -153,22 +161,21 @@ void main() {
 	uv.x *= (float(size.x) / size.y);
 
     //FOV is already the tangent of fov/2 so we don't need to calculate on each thread
-	uv *= tanFov;
+	uv *= params.camera_tan_fov;
 
-	vec3 pos = vec3(0., 0., 5.);
 	vec3 dir = normalize(vec3(uv.x, -uv.y, -1.0));
 
-	//Ray-AABB check to shift forward cheaply
+	//Ray-AABB check to shift forward cheaply and reduce amount of primitive sdfs checked in the raymarch
 	float minDist = 999999999999999.;
-	for (int i = 0; i < object_types.data.length(); i++)
+	for (int i = 0; i < object_types.data.length(); i += 2)
 	{
 		int type = object_types.data[i];
 
 		if (type == -1) break;
 
-		int offset = dataBufferObjectSize * i;
+		int offset = object_types.data[i+1];
 		vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
-		vec2 intersect = intersectAABB(pos, dir, objectPos, vec3(1.0));
+		vec2 intersect = intersectAABB(params.camera_position, dir, objectPos, vec3(1.0));
 		if (intersect.x <= intersect.y) 
 		{
 			minDist = min(minDist, intersect.x);
@@ -177,9 +184,11 @@ void main() {
 		}
 	}
 
-	raymarch(pos, dir, minDist, size.x);
+	raymarch(params.camera_position, dir, minDist, size.x);
 
     //Use first one in the future for deferred-ish (rgb are normal, alpha is depth)
 	//if (params.finalPass) imageStore(output_image, pixel, float(hitResult.hit) * vec4(calcNormal(hitResult.pos), distance(hitResult.pos, pos)));
 	imageStore(depth_image, pixel, vec4(vec3(0.0), float(hitResult.hit) * hitResult.dist));
+	
+	//imageStore(depth_image, pixel, vec4(vec3(float(hitResult.steps) / 100.), 1.0));
 }

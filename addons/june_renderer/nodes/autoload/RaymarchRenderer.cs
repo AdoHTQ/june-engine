@@ -101,7 +101,6 @@ public partial class RaymarchRenderer : Node
 
     public override void _Process(double delta)
     {
-        GD.Print(primitives.Count);
         Rid pipeline = device.ComputePipelineCreate(shader);
 
         device.TextureClear(depthTexture, Colors.Transparent, 0, 1, 0, 1);
@@ -114,10 +113,28 @@ public partial class RaymarchRenderer : Node
             RaymarchPrimitiveInstance3D primitive = primitives[k];
 
             typeInput.Add(primitive.GetID());
+            typeInput.Add(dataInput.Count);
             dataInput.AddRange(primitive.GetData());
         }
         if (typeInput.Count == 0) typeInput.Add(-1);
         if (dataInput.Count == 0) dataInput.Add(-1);
+
+        //Build push constant
+        float[] pushConstant = 
+        {
+            0f,
+            0f,
+            5f,
+            0.767326987979f,
+            0f,
+            0f,
+            0f,
+            0f
+        };
+
+        uint pushConstantSize = (uint)(pushConstant.Length * sizeof(float));
+        byte[] pushConstantBytes = new byte[pushConstantSize];
+        Buffer.BlockCopy(pushConstant.ToArray(), 0, pushConstantBytes, 0, pushConstantBytes.Length);
 
         //Format arrays
         byte[] typeInputBytes = new byte[typeInput.Count * sizeof(int)];
@@ -141,6 +158,7 @@ public partial class RaymarchRenderer : Node
         long computeList = device.ComputeListBegin();
         device.ComputeListBindComputePipeline(computeList, pipeline);
         device.ComputeListBindUniformSet(computeList, uniformSet, 0);
+        device.ComputeListSetPushConstant(computeList, pushConstantBytes, pushConstantSize);
         device.ComputeListDispatch(computeList, WIDTH / 8, HEIGHT / 8, 1);
         device.ComputeListEnd();
 
