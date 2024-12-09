@@ -33,8 +33,7 @@ layout(set = 0, binding = 2, std430) restrict buffer ObjectPositions { float dat
 layout(push_constant, std430) uniform Params {
 	vec3 camera_position;
 	float camera_tan_fov;
-	vec3 camera_rotation;
-	float padding;
+	vec4 camera_rotation;
 } params;
 
 //Globally accessed by conemarch function and main function
@@ -163,7 +162,10 @@ void main() {
     //tan_fov is already tan(fov/2) so we don't need to calculate on each thread
 	uv *= params.camera_tan_fov;
 
-	vec3 dir = normalize(vec3(uv.x, -uv.y, -1.0));
+	//Create ray direction and rotate it to match physical camera
+	vec3 baseDir = normalize(vec3(uv.x, -uv.y, -1.0));
+	vec3 temp = cross(params.camera_rotation.xyz, baseDir) + params.camera_rotation.w * baseDir;
+	vec3 dir = baseDir + 2.0*cross(params.camera_rotation.xyz, temp);
 
 	//Ray-AABB check to shift forward cheaply and reduce amount of primitive sdfs checked in the raymarch
 	float minDist = 999999999999999.;

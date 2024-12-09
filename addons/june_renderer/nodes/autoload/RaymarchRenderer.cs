@@ -40,7 +40,6 @@ public partial class RaymarchRenderer : Node
     public void SetFov(float fov)
     {
         tanFov = Mathf.Tan(Mathf.DegToRad(fov)/2f);
-        GD.Print(tanFov);
     }
 
 
@@ -53,7 +52,7 @@ public partial class RaymarchRenderer : Node
 
     public float tanFov;
     public Vector3 cameraPos;
-    public Vector3 cameraDir;
+    public Quaternion cameraDir;
 
     private void SetupComputeShader()
     {
@@ -135,10 +134,10 @@ public partial class RaymarchRenderer : Node
             cameraPos.Y,
             cameraPos.Z,
             tanFov,
-            0f,
-            0f,
-            0f,
-            0f
+            cameraDir.X,
+            cameraDir.Y,
+            cameraDir.Z,
+            cameraDir.W
         };
 
         uint pushConstantSize = (uint)(pushConstant.Length * sizeof(float));

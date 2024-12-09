@@ -11,9 +11,10 @@ public partial class RaymarchCamera3D : Camera3D
     {
         RaymarchRenderer.Instance.SetFov(Fov);
     }
-    
+
     public override void _Process(double delta)
     {
         RaymarchRenderer.Instance.cameraPos = GlobalPosition;
+        RaymarchRenderer.Instance.cameraDir = new(Transform.Basis);
     }
 }

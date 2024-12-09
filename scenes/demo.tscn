@@ -28,6 +28,4 @@ boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
 [node name="RaymarchCamera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.335)
-visible = false
-fov = 112.9
 script = ExtResource("3_6m82c")
