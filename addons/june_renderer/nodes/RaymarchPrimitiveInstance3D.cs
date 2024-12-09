@@ -66,7 +66,8 @@ public partial class RaymarchPrimitiveInstance3D : Node3D
 
     public List<float> GetData()
     {
-        List<float> data = new List<float>{Position.X, Position.Y, Position.Z};
+        Vector3 AABBSize = Primitive.BoundingBoxSize;
+        List<float> data = new() { Position.X, Position.Y, Position.Z};
         data.AddRange(Primitive.GetParameters());
         return data;
     }

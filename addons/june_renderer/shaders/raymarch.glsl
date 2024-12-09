@@ -71,6 +71,12 @@ vec3 opRep(vec3 testPoint, vec3 c) {
 }
 
 
+vec3 getVector3(int offset)
+{
+	return vec3(object_data.data[offset], object_data.data[offset+1], object_data.data[offset+2]);
+}
+
+
 
 
 vec2 intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxPosition, vec3 boxHalfSize) {
@@ -91,9 +97,10 @@ float getPrimitiveDist(vec3 point, int objectNum)
 	int type = object_types.data[objectNum];
 	int offset = object_types.data[objectNum+1];
 
-	vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
-	if (type == 0) return sdSphere(point, objectPos, object_data.data[offset + 3]);
-	else if (type == 1) return sdBox(point, objectPos, vec3(object_data.data[offset + 3]));
+	vec3 objectPos = getVector3(offset);
+	
+	if (type == 0) return sdSphere(point, objectPos, object_data.data[offset+3]);
+	else if (type == 1) return sdBox(point, objectPos, getVector3(offset+3));
 }
 
 float SDF(vec3 point)
