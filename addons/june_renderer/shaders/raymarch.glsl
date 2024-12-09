@@ -14,12 +14,12 @@ const int dataBufferObjectSize = 4;
 
 
 
-int hitObjects[32];
+int hitObjects[64];
 int hitCount = 0;
 
 
 // Invocations in the (x, y, z) dimension
-layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
+layout(local_size_x = 12, local_size_y = 12, local_size_z = 1) in;
 
 //Image uniforms
 layout(rgba8, set = 0, binding = 0) uniform image2D depth_image;
@@ -93,7 +93,7 @@ float getPrimitiveDist(vec3 point, int objectNum)
 
 	vec3 objectPos = vec3(object_data.data[offset + 0], object_data.data[offset + 1], object_data.data[offset + 2]);
 	if (type == 0) return sdSphere(point, objectPos, object_data.data[offset + 3]);
-	// else if (object_types.data[objectNum] == 1) return sdBox(point, objectPos, vec3(object_data.data[offset + 3]));
+	else if (type == 1) return sdBox(point, objectPos, vec3(object_data.data[offset + 3]));
 }
 
 float SDF(vec3 point)

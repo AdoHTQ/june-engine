@@ -167,7 +167,7 @@ public partial class RaymarchRenderer : Node
         device.ComputeListBindComputePipeline(computeList, pipeline);
         device.ComputeListBindUniformSet(computeList, uniformSet, 0);
         device.ComputeListSetPushConstant(computeList, pushConstantBytes, pushConstantSize);
-        device.ComputeListDispatch(computeList, WIDTH / 8, HEIGHT / 8, 1);
+        device.ComputeListDispatch(computeList, WIDTH / 12, HEIGHT / 12, 1);
         device.ComputeListEnd();
 
         

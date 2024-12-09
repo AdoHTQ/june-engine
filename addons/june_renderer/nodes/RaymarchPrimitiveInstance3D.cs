@@ -24,7 +24,7 @@ public partial class RaymarchPrimitiveInstance3D : Node3D
 
     public RaymarchPrimitiveInstance3D()
     {
-        //if (!Engine.IsEditorHint()) return;
+        if (!Engine.IsEditorHint()) return;
         previewMeshInstance = new MeshInstance3D();
         AddChild(previewMeshInstance, false, InternalMode.Front);
     }

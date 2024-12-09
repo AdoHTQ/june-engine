@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c71y3h77a0n41"]
+[gd_scene load_steps=6 format=3 uid="uid://c71y3h77a0n41"]
 
 [ext_resource type="Script" path="res://addons/june_renderer/nodes/RaymarchPrimitiveInstance3D.cs" id="2_s86y2"]
 [ext_resource type="Script" path="res://addons/june_renderer/resources/primitives/RaymarchSphere.cs" id="3_6bjc2"]
@@ -6,10 +6,6 @@
 [ext_resource type="Script" path="res://scripts/camera.gd" id="3_efxtn"]
 
 [sub_resource type="Resource" id="Resource_0blch"]
-script = ExtResource("3_6bjc2")
-Radius = 0.5
-
-[sub_resource type="Resource" id="Resource_lwc6o"]
 script = ExtResource("3_6bjc2")
 Radius = 0.5
 
@@ -21,13 +17,8 @@ script = ExtResource("2_s86y2")
 Primitive = SubResource("Resource_0blch")
 boundingBox = AABB(-1, -1, -1, 2, 2, 2)
 
-[node name="RaymarchPrimitiveInstance3D3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.815, -0.645, 0)
-script = ExtResource("2_s86y2")
-Primitive = SubResource("Resource_lwc6o")
-boundingBox = AABB(-1, -1, -1, 2, 2, 2)
-
 [node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 script = ExtResource("3_efxtn")
 
 [node name="RaymarchCamera3D" type="Camera3D" parent="Node3D"]

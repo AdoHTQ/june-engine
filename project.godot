@@ -16,12 +16,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-RaymarchRenderer="*res://addons/june_renderer/nodes/autoload/RaymarchRenderer.cs"
 FpsCounter="*res://scripts/FPSCounter.cs"
+RaymarchRenderer="*res://addons/june_renderer/nodes/autoload/RaymarchRenderer.cs"
 
 [display]
 
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [dotnet]
 
